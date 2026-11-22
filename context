@@ -1,0 +1,142 @@
+INVENTEC: DESCRIPCION DEL PROYECTO
+==================================
+
+Sistema de Control de Inventario y Gestion de Actividades Tecnicas
+Autor: Jafer Enrique Arteaga Sossa
+Ficha 3336127 - Analisis y Desarrollo de Software (SENA)
+Fecha de formulacion: 30 de noviembre de 2025
+
+
+DESCRIPCION GENERAL
+-------------------
+InvenTec es un sistema de software que centraliza el inventario de equipos
+y el control de las actividades que realizan los tecnicos de campo. La
+empresa necesita ver en tiempo real que activos hay en bodega, cuales tiene
+asignados cada tecnico y el historial de intervenciones en cada sitio de
+trabajo.
+
+Su meta es mejorar la trazabilidad de los recursos y la eficiencia
+operativa, y dar informacion precisa y actualizada para decidir.
+
+
+PROBLEMA Y JUSTIFICACION
+------------------------
+Sin una herramienta unica, la empresa no puede saber con certeza donde esta
+cada equipo ni que trabajo se hizo con el. Eso afecta:
+- La trazabilidad de los equipos entre bodega, tecnicos y sitios de trabajo.
+- El seguimiento de las intervenciones: instalaciones, mantenimientos y
+  retiros.
+- La calidad de los datos con los que se toman decisiones.
+
+InvenTec responde con una base de datos centralizada, accesible desde
+computadores y dispositivos moviles, donde cada operacion queda registrada
+y auditada.
+
+
+OBJETIVO GENERAL
+----------------
+Desarrollar un sistema que permita gestionar el inventario de equipos y
+controlar en detalle las actividades tecnicas realizadas, facilitando la
+trazabilidad, la asignacion y el seguimiento de recursos y tareas.
+
+OBJETIVOS ESPECIFICOS
+---------------------
+1. Implementar un modulo de inventario para registrar, clasificar y
+   monitorear equipos en bodega o asignados a tecnicos.
+2. Controlar las actividades tecnicas: mantenimientos, instalaciones y
+   retiros de equipos.
+3. Registrar tiempos de ejecucion, ubicaciones y observaciones de cada
+   actividad.
+4. Generar reportes consolidados de inventario, historial de actividades y
+   desempeno tecnico.
+5. Asegurar el acceso controlado mediante autenticacion y roles de usuario.
+6. Ofrecer una interfaz intuitiva para el personal tecnico y el
+   administrativo.
+
+
+ALCANCE Y MODULOS
+-----------------
+Cubre analisis, diseno, desarrollo, implementacion y pruebas de una
+aplicacion web/movil. Incluye:
+- Modulo de administracion de usuarios y roles.
+- Modulo de inventario con entradas, salidas, asignaciones y devoluciones.
+- Modulo de gestion de actividades para registrar intervenciones tecnicas
+  en campo.
+- Control de tiempos, ubicaciones, observaciones y estado de ejecucion.
+- Panel de reportes y estadisticas.
+- Base de datos centralizada.
+- Capacitacion a los usuarios finales y documentacion tecnica con manuales
+  de usuario.
+
+No incluye: integracion con otros sistemas externos (salvo que se defina
+despues) ni hardware adicional como lectores de codigo de barras,
+servidores fisicos o dispositivos moviles.
+
+
+USUARIOS Y ROLES
+----------------
+Tres roles: administrador, bodega y tecnico. El acceso a la informacion se
+controla mediante autenticacion y permisos por rol.
+
+
+REQUERIMIENTOS FUNCIONALES
+--------------------------
+RF01 Gestion de usuarios
+     Crear, editar, desactivar y asignar roles (administrador, bodega,
+     tecnico).
+RF02 Control de inventario
+     Registrar equipos (codigo, tipo, marca, serie, estado, ubicacion),
+     entradas y salidas, asignarlos a tecnicos con fecha de entrega y
+     devolucion, y avisar de baja existencia o mal estado.
+RF03 Gestion de actividades tecnicas
+     Crear ordenes de trabajo (instalacion, mantenimiento, retiro),
+     registrar tiempos reales, ubicacion (direccion o GPS), estado
+     (ejecutada, pendiente, cancelada), observaciones, evidencias (fotos,
+     documentos) y materiales.
+RF04 Reportes
+     Inventario general o por tecnico, historial de actividades por fecha,
+     tecnico o tipo de tarea, con exportacion a PDF o Excel.
+RF05 Auditoria
+     Registrar automaticamente movimientos de inventario, asignaciones,
+     cambios de estado y actividades.
+RF06 Notificaciones
+     Alertar por asignaciones nuevas, actividades pendientes y equipos
+     proximos a mantenimiento.
+
+
+REQUERIMIENTOS NO FUNCIONALES
+-----------------------------
+RNF01 Usabilidad: interfaz intuitiva, accesible desde moviles y
+      computadoras.
+RNF02 Seguridad: usuario y contrasena (2FA opcional), roles y permisos,
+      cifrado de datos sensibles.
+RNF03 Rendimiento: consultas en menos de 3 segundos con carga normal; al
+      menos 100 usuarios concurrentes.
+RNF04 Disponibilidad: 99 % del tiempo.
+RNF05 Mantenibilidad: codigo documentado y con estandares de desarrollo.
+RNF06 Escalabilidad: permitir nuevos modulos, como GPS avanzado o codigos
+      QR.
+
+
+BASE DE DATOS Y FRONT-END
+-------------------------
+Base de datos relacional inventario_tecnico (MySQL), 9 tablas: rol,
+usuario, equipo, asignacion, actividad, material, actividad_material,
+evidencia y auditoria. Usa llaves primarias y foraneas, y restricciones
+UNIQUE, CHECK y DEFAULT.
+
+Front-end en HTML, CSS y JavaScript sin librerias externas: 11 pantallas
+responsivas y accesibles (inicio de sesion, panel de control, inventario,
+formularios de equipo y actividad, asignaciones, actividades, reportes,
+usuarios y roles, auditoria).
+
+
+EQUIPO DE DESARROLLO
+--------------------
+Equipo multidisciplinario: jefe de proyecto, analista de sistemas,
+arquitecto de software, expertos en seguridad informatica y de datos,
+desarrolladores web y movil, disenador de interfaz grafica, testers,
+administrador de bases de datos y personal de soporte tecnico e
+implementacion.
+
+Responsable del proyecto: Jafer Enrique Arteaga Sossa.

@@ -1,0 +1,372 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<meta name="theme-color" content="#1F3864">
+<meta name="description" content="InvenTec: control de inventario y gestión de actividades técnicas.">
+<title>InvenTec | Control de inventario y actividades técnicas</title>
+<link rel="icon" href="data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 64 64'%3E%3Crect width='64' height='64' rx='14' fill='%231F3864'/%3E%3Cpath d='M32 14l16 9v18l-16 9-16-9V23z' fill='none' stroke='white' stroke-width='3.5' stroke-linejoin='round'/%3E%3Cpath d='M16 23l16 9 16-9M32 32v18' fill='none' stroke='white' stroke-width='3.5' stroke-linejoin='round'/%3E%3C/svg%3E">
+<link rel="stylesheet" href="css/styles.css">
+</head>
+<body>
+<a class="skip" href="#content" onclick="document.getElementById('content').focus();return false">Saltar al contenido</a>
+
+
+<svg width="0" height="0" style="position:absolute">
+  <symbol id="i-home" viewBox="0 0 24 24"><path d="M3 11l9-8 9 8v10a1 1 0 0 1-1 1h-5v-7H9v7H4a1 1 0 0 1-1-1z"/></symbol>
+  <symbol id="i-box" viewBox="0 0 24 24"><path d="M21 8l-9-5-9 5v8l9 5 9-5z"/><path d="M3 8l9 5 9-5M12 13v8"/></symbol>
+  <symbol id="i-swap" viewBox="0 0 24 24"><path d="M7 4L3 8l4 4M3 8h14M17 20l4-4-4-4M21 16H7"/></symbol>
+  <symbol id="i-clip" viewBox="0 0 24 24"><rect x="6" y="4" width="12" height="17" rx="2"/><path d="M9 4h6v3H9zM9 12h6M9 16h4"/></symbol>
+  <symbol id="i-chart" viewBox="0 0 24 24"><path d="M4 20V10M10 20V4M16 20v-7M22 20H2"/></symbol>
+  <symbol id="i-users" viewBox="0 0 24 24"><circle cx="9" cy="8" r="3.5"/><path d="M2.5 20c0-3.5 3-6 6.5-6s6.5 2.5 6.5 6M17 5a3.5 3.5 0 0 1 0 7M21.5 20c0-2.5-1.5-4.5-4-5.5"/></symbol>
+  <symbol id="i-shield" viewBox="0 0 24 24"><path d="M12 3l8 3v6c0 5-3.5 8-8 9-4.5-1-8-4-8-9V6z"/><path d="M9 12l2 2 4-4"/></symbol>
+  <symbol id="i-bell" viewBox="0 0 24 24"><path d="M6 9a6 6 0 0 1 12 0c0 6 2 7 2 7H4s2-1 2-7M10 20a2 2 0 0 0 4 0"/></symbol>
+  <symbol id="i-plus" viewBox="0 0 24 24"><path d="M12 5v14M5 12h14"/></symbol>
+  <symbol id="i-out" viewBox="0 0 24 24"><path d="M9 4H5a1 1 0 0 0-1 1v14a1 1 0 0 0 1 1h4M16 8l4 4-4 4M20 12H9"/></symbol>
+  <symbol id="i-search" viewBox="0 0 24 24"><circle cx="11" cy="11" r="7"/><path d="M20 20l-4-4"/></symbol>
+  <symbol id="i-pin" viewBox="0 0 24 24"><path d="M12 21s7-6 7-11a7 7 0 0 0-14 0c0 5 7 11 7 11z"/><circle cx="12" cy="10" r="2.5"/></symbol>
+  <symbol id="i-down" viewBox="0 0 24 24"><path d="M12 4v11M7 11l5 5 5-5M4 20h16"/></symbol>
+  <symbol id="i-menu" viewBox="0 0 24 24"><path d="M4 6h16M4 12h16M4 18h16"/></symbol>
+  <symbol id="i-warn" viewBox="0 0 24 24"><path d="M12 3l10 18H2z"/><path d="M12 10v5M12 18v.5"/></symbol>
+</svg>
+
+<!-- =============== LOGIN =============== -->
+<section id="login">
+  <div class="login-left">
+    <div class="brand"><div class="logo"><svg class="i"><use href="#i-box"/></svg></div>InvenTec</div>
+    <div>
+      <h1>Control de inventario y gestión de actividades técnicas</h1>
+      <p>Una sola plataforma para saber qué equipos hay en bodega, cuáles tiene cada técnico y qué trabajos se ejecutaron en campo.</p>
+      <ul>
+        <li>Inventario y asignaciones en tiempo real</li>
+        <li>Órdenes de trabajo con ubicación y evidencias</li>
+        <li>Reportes y auditoría de cada operación</li>
+      </ul>
+    </div>
+    <small>Interfaz gráfica · Evidencia GA6-220501096-AA4-EV03</small>
+  </div>
+  <div class="login-right">
+    <div class="login-card">
+      <h2>Iniciar sesión</h2>
+      <p class="sub">Ingrese con su usuario y contraseña.</p>
+      <div class="field"><label>Usuario</label><input class="input" value="admin" placeholder="Usuario"></div>
+      <div class="field"><label>Contraseña</label><input class="input" type="password" value="••••••••" placeholder="Contraseña"></div>
+      <div class="row-between"><label><input type="checkbox" checked> Recordarme</label><a href="#" onclick="toast('Se enviará un enlace de recuperación al correo registrado');return false">¿Olvidó su contraseña?</a></div>
+      <button class="btn btn-primary btn-block" data-go="dashboard">Ingresar</button>
+      <p class="login-foot">Acceso controlado por roles: administrador, bodega y técnico</p>
+    </div>
+  </div>
+</section>
+
+<!-- =============== SHELL =============== -->
+<div id="shell" class="hidden">
+  <div class="overlay" id="overlay" onclick="toggleMenu(false)"></div>
+  <aside id="sidebar" aria-label="Barra lateral">
+    <div class="brand"><div class="logo"><svg class="i"><use href="#i-box"/></svg></div>InvenTec</div>
+    <div class="nav-label">Principal</div>
+    <nav class="nav" id="nav" aria-label="Menú principal">
+      <a href="#dashboard" data-go="dashboard" data-nav="dashboard"><svg class="i"><use href="#i-home"/></svg>Panel general</a>
+      <a href="#inventario" data-go="inventario" data-nav="inventario"><svg class="i"><use href="#i-box"/></svg>Inventario</a>
+      <a href="#asignaciones" data-go="asignaciones" data-nav="asignaciones"><svg class="i"><use href="#i-swap"/></svg>Asignaciones</a>
+      <a href="#actividades" data-go="actividades" data-nav="actividades"><svg class="i"><use href="#i-clip"/></svg>Actividades</a>
+      <a href="#reportes" data-go="reportes" data-nav="reportes"><svg class="i"><use href="#i-chart"/></svg>Reportes</a>
+      <div class="nav-label" style="margin-top:8px">Administración</div>
+      <a href="#usuarios" data-go="usuarios" data-nav="usuarios"><svg class="i"><use href="#i-users"/></svg>Usuarios y roles</a>
+      <a href="#auditoria" data-go="auditoria" data-nav="auditoria"><svg class="i"><use href="#i-shield"/></svg>Auditoría</a>
+    </nav>
+    <div class="aside-foot">
+      <div class="avatar">AD</div>
+      <div><b>Administrador</b><span>admin@inventec.co</span></div>
+      <div class="out" data-go="login" title="Cerrar sesión" role="button" tabindex="0" aria-label="Cerrar sesión"><svg class="i"><use href="#i-out"/></svg></div>
+    </div>
+  </aside>
+
+  <div class="main">
+    <header class="topbar">
+      <button class="menu-btn" id="menu-btn" aria-label="Abrir menú" aria-expanded="false" onclick="toggleMenu()"><svg class="i"><use href="#i-menu"/></svg></button>
+      <h2 id="page-title">Panel general</h2>
+      <div class="top-right">
+        <div class="search"><svg class="i"><use href="#i-search"/></svg><input placeholder="Buscar equipo, orden o técnico"></div>
+        <button class="bell" id="bell" aria-label="Notificaciones, 3 sin leer" onclick="toggleNotif()"><svg class="i"><use href="#i-bell"/></svg><span class="dot">3</span></button>
+      </div>
+      <div class="notif hidden" id="notif">
+        <h4>Notificaciones <span>3 sin leer</span></h4>
+        <div class="n"><i style="background:#E5484D"></i><div>Baja existencia de ONT: quedan 2 unidades en bodega<small>Hace 10 min</small></div></div>
+        <div class="n"><i style="background:#F5A524"></i><div>Nueva orden asignada a Carlos Gómez: OT-0142<small>Hace 1 h</small></div></div>
+        <div class="n"><i style="background:#3D6BC4"></i><div>EQ-005 está próximo a mantenimiento (30 días)<small>Ayer</small></div></div>
+      </div>
+    </header>
+
+    <div class="content" id="content" role="main" tabindex="-1">
+
+      <!-- ---------- DASHBOARD ---------- -->
+      <div class="screen" id="dashboard" data-title="Panel general">
+        <div class="page-head"><div><h3>Buenos días, Administrador</h3><p>Resumen de la operación al 27 de septiembre de 2026</p></div>
+          <button class="btn btn-primary" data-go="actividad-form"><svg class="i"><use href="#i-plus"/></svg>Nueva orden de trabajo</button></div>
+        <div class="grid g4" style="margin-bottom:18px">
+          <div class="card stat"><div class="ic" style="background:var(--blue-bg);color:var(--blue)"><svg class="i"><use href="#i-box"/></svg></div><div><b>128</b><span>Equipos en bodega</span></div></div>
+          <div class="card stat"><div class="ic" style="background:var(--green-bg);color:var(--green)"><svg class="i"><use href="#i-swap"/></svg></div><div><b>46</b><span>Equipos asignados</span></div></div>
+          <div class="card stat"><div class="ic" style="background:var(--amber-bg);color:var(--amber)"><svg class="i"><use href="#i-clip"/></svg></div><div><b>12</b><span>Actividades pendientes</span></div></div>
+          <div class="card stat"><div class="ic" style="background:var(--red-bg);color:var(--red)"><svg class="i"><use href="#i-warn"/></svg></div><div><b>7</b><span>En mantenimiento o baja</span></div></div>
+        </div>
+        <div class="grid g2">
+          <div class="card">
+            <h4>Actividades de los últimos 30 días</h4>
+            <div class="bars">
+              <div class="bar"><b>18</b><div style="height:68%"></div>Instalaciones</div>
+              <div class="bar"><b>24</b><div style="height:92%"></div>Mantenimientos</div>
+              <div class="bar"><b>9</b><div style="height:36%"></div>Retiros</div>
+            </div>
+            <h4 style="margin-top:22px">Últimas actividades <a class="btn btn-ghost btn-sm" data-go="actividades">Ver todas</a></h4>
+            <div class="table-wrap"><table class="mini">
+              <tr><th>Orden</th><th>Tipo</th><th>Técnico</th><th>Estado</th></tr>
+              <tr><td>OT-0142</td><td>Instalación</td><td>Carlos Gómez</td><td><span class="badge b-amber">Pendiente</span></td></tr>
+              <tr><td>OT-0141</td><td>Mantenimiento</td><td>Laura Díaz</td><td><span class="badge b-green">Ejecutada</span></td></tr>
+              <tr><td>OT-0140</td><td>Retiro</td><td>Pedro Ramírez</td><td><span class="badge b-green">Ejecutada</span></td></tr>
+            </table></div>
+          </div>
+          <div class="card">
+            <h4>Alertas del inventario</h4>
+            <div class="alert r"><svg class="i"><use href="#i-warn"/></svg><div><b>Baja existencia</b><br>ONT: quedan 2 unidades disponibles en bodega.</div></div>
+            <div class="alert a"><svg class="i"><use href="#i-warn"/></svg><div><b>Equipo en mal estado</b><br>EQ-004 (Módem TP-Link) pasó a mantenimiento.</div></div>
+            <div class="alert b"><svg class="i"><use href="#i-bell"/></svg><div><b>Mantenimiento próximo</b><br>EQ-005 (Antena Ubiquiti) requiere revisión en 30 días.</div></div>
+            <button class="btn btn-ghost btn-block" data-go="inventario" style="margin-top:6px">Ir al inventario</button>
+          </div>
+        </div>
+      </div>
+
+      <!-- ---------- INVENTARIO ---------- -->
+      <div class="screen" id="inventario" data-title="Inventario" data-nav="inventario">
+        <div class="page-head"><div><h3>Inventario de equipos</h3><p>Consulte, registre y controle los equipos de la bodega y en campo</p></div>
+          <button class="btn btn-primary" data-go="equipo-form"><svg class="i"><use href="#i-plus"/></svg>Nuevo equipo</button></div>
+        <div class="card">
+          <div class="filters">
+            <input class="input grow" placeholder="Buscar por código, marca o serie">
+            <select class="input"><option>Tipo: todos</option><option>Router</option><option>ONT</option><option>Módem</option></select>
+            <select class="input"><option>Estado: todos</option><option>Disponible</option><option>Asignado</option><option>Mantenimiento</option><option>Baja</option></select>
+            <select class="input"><option>Ubicación: todas</option><option>Bodega principal</option><option>En campo</option></select>
+          </div>
+          <div class="table-wrap"><table>
+            <tr><th>Código</th><th>Tipo</th><th>Marca</th><th>Serie</th><th>Estado</th><th>Ubicación</th><th>Acciones</th></tr>
+            <tr class="click" data-go="equipo-form"><td><b>EQ-001</b></td><td>Router</td><td>Huawei</td><td>HW2409A1B77</td><td><span class="badge b-green">Disponible</span></td><td>Bodega principal</td><td><button class="btn btn-ghost btn-sm">Editar</button><button class="btn btn-ghost btn-sm" data-go="asignaciones">Asignar</button></td></tr>
+            <tr class="click" data-go="equipo-form"><td><b>EQ-002</b></td><td>ONT</td><td>ZTE</td><td>ZT3381K92X</td><td><span class="badge b-blue">Asignado</span></td><td>Carlos Gómez</td><td><button class="btn btn-ghost btn-sm">Editar</button></td></tr>
+            <tr class="click" data-go="equipo-form"><td><b>EQ-003</b></td><td>Decodificador</td><td>Cisco</td><td>CS5520D118</td><td><span class="badge b-blue">Asignado</span></td><td>Laura Díaz</td><td><button class="btn btn-ghost btn-sm">Editar</button></td></tr>
+            <tr class="click" data-go="equipo-form"><td><b>EQ-004</b></td><td>Módem</td><td>TP-Link</td><td>TP7810M002</td><td><span class="badge b-amber">Mantenimiento</span></td><td>Taller técnico</td><td><button class="btn btn-ghost btn-sm">Editar</button></td></tr>
+            <tr class="click" data-go="equipo-form"><td><b>EQ-005</b></td><td>Antena</td><td>Ubiquiti</td><td>UB4417N330</td><td><span class="badge b-green">Disponible</span></td><td>Bodega principal</td><td><button class="btn btn-ghost btn-sm">Editar</button><button class="btn btn-ghost btn-sm" data-go="asignaciones">Asignar</button></td></tr>
+            <tr class="click" data-go="equipo-form"><td><b>EQ-006</b></td><td>Router</td><td>TP-Link</td><td>TP9902R145</td><td><span class="badge b-red">Baja</span></td><td>Bodega principal</td><td><button class="btn btn-ghost btn-sm">Editar</button></td></tr>
+            <tr class="click" data-go="equipo-form"><td><b>EQ-007</b></td><td>ONT</td><td>Huawei</td><td>HW3305O871</td><td><span class="badge b-green">Disponible</span></td><td>Bodega principal</td><td><button class="btn btn-ghost btn-sm">Editar</button><button class="btn btn-ghost btn-sm" data-go="asignaciones">Asignar</button></td></tr>
+          </table></div>
+          <div class="tbl-foot"><span>Mostrando 7 de 174 equipos</span><div class="pager"><span class="on">1</span><span>2</span><span>3</span><span>›</span></div></div>
+        </div>
+      </div>
+
+      <!-- ---------- EQUIPO FORM ---------- -->
+      <div class="screen" id="equipo-form" data-title="Registrar equipo" data-nav="inventario">
+        <div class="page-head"><div><h3>Registrar equipo</h3><p>Complete los datos del equipo que ingresa al inventario</p></div>
+          <button class="btn btn-ghost" data-go="inventario">← Volver al inventario</button></div>
+        <div class="card" style="max-width:820px">
+          <div class="grid g-form">
+            <div class="field"><label>Código</label><input class="input" value="EQ-008"></div>
+            <div class="field"><label>Tipo</label><select class="input"><option>Router</option><option>ONT</option><option>Módem</option><option>Decodificador</option><option>Antena</option></select></div>
+            <div class="field"><label>Marca</label><input class="input" placeholder="Ej. Huawei"></div>
+            <div class="field"><label>Número de serie</label><input class="input" placeholder="Ej. HW2409A1B77"></div>
+            <div class="field"><label>Estado</label><select class="input"><option>Disponible</option><option>Asignado</option><option>Mantenimiento</option><option>Baja</option></select></div>
+            <div class="field"><label>Ubicación</label><select class="input"><option>Bodega principal</option><option>Taller técnico</option><option>En campo</option></select></div>
+          </div>
+          <div class="field"><label>Observaciones</label><textarea class="input" placeholder="Notas sobre el ingreso del equipo (opcional)"></textarea></div>
+          <div class="actions">
+            <button class="btn btn-ghost" data-go="inventario">Cancelar</button>
+            <button class="btn btn-primary" data-go="inventario" data-toast="Equipo guardado correctamente">Guardar equipo</button>
+          </div>
+        </div>
+      </div>
+
+      <!-- ---------- ASIGNACIONES ---------- -->
+      <div class="screen" id="asignaciones" data-title="Asignaciones" data-nav="asignaciones">
+        <div class="page-head"><div><h3>Asignaciones de equipos</h3><p>Entregue equipos a los técnicos y registre su devolución</p></div></div>
+        <div class="grid split split-asig">
+          <div class="card">
+            <h4>Nueva asignación</h4>
+            <div class="field"><label>Equipo disponible</label><select class="input"><option>EQ-001 · Router Huawei</option><option>EQ-005 · Antena Ubiquiti</option><option>EQ-007 · ONT Huawei</option></select></div>
+            <div class="field"><label>Técnico</label><select class="input"><option>Carlos Gómez</option><option>Laura Díaz</option><option>Pedro Ramírez</option></select></div>
+            <div class="field"><label>Fecha de entrega</label><input class="input" value="27/09/2026"></div>
+            <div class="field"><label>Fecha de devolución (opcional)</label><input class="input" placeholder="dd/mm/aaaa"></div>
+            <button class="btn btn-primary btn-block" data-toast="Equipo asignado. Se notificó al técnico">Asignar equipo</button>
+          </div>
+          <div class="card">
+            <h4>Historial de asignaciones</h4>
+            <div class="table-wrap"><table>
+              <tr><th>Equipo</th><th>Técnico</th><th>Entrega</th><th>Devolución</th><th>Estado</th><th></th></tr>
+              <tr><td><b>EQ-002</b> · ONT ZTE</td><td>Carlos Gómez</td><td>22/09/2026</td><td>—</td><td><span class="badge b-blue">Activa</span></td><td><button class="btn btn-ghost btn-sm" data-toast="Devolución registrada">Registrar devolución</button></td></tr>
+              <tr><td><b>EQ-003</b> · Decodificador Cisco</td><td>Laura Díaz</td><td>18/09/2026</td><td>—</td><td><span class="badge b-blue">Activa</span></td><td><button class="btn btn-ghost btn-sm" data-toast="Devolución registrada">Registrar devolución</button></td></tr>
+              <tr><td><b>EQ-008</b> · Router Huawei</td><td>Pedro Ramírez</td><td>10/09/2026</td><td>20/09/2026</td><td><span class="badge b-green">Devuelta</span></td><td></td></tr>
+              <tr><td><b>EQ-009</b> · Antena Ubiquiti</td><td>Carlos Gómez</td><td>05/09/2026</td><td>15/09/2026</td><td><span class="badge b-green">Devuelta</span></td><td></td></tr>
+              <tr><td><b>EQ-010</b> · ONT ZTE</td><td>Laura Díaz</td><td>01/09/2026</td><td>12/09/2026</td><td><span class="badge b-green">Devuelta</span></td><td></td></tr>
+            </table></div>
+          </div>
+        </div>
+      </div>
+
+      <!-- ---------- ACTIVIDADES ---------- -->
+      <div class="screen" id="actividades" data-title="Actividades técnicas" data-nav="actividades">
+        <div class="page-head"><div><h3>Actividades técnicas</h3><p>Órdenes de trabajo de instalación, mantenimiento y retiro</p></div>
+          <button class="btn btn-primary" data-go="actividad-form"><svg class="i"><use href="#i-plus"/></svg>Nueva orden de trabajo</button></div>
+        <div class="card">
+          <div class="filters">
+            <input class="input grow" placeholder="Buscar por orden o dirección">
+            <select class="input"><option>Técnico: todos</option><option>Carlos Gómez</option><option>Laura Díaz</option><option>Pedro Ramírez</option></select>
+            <select class="input"><option>Tipo: todos</option><option>Instalación</option><option>Mantenimiento</option><option>Retiro</option></select>
+            <select class="input"><option>Estado: todos</option><option>Pendiente</option><option>Ejecutada</option><option>Cancelada</option></select>
+          </div>
+          <div class="table-wrap"><table>
+            <tr><th>Orden</th><th>Tipo</th><th>Técnico</th><th>Ubicación</th><th>Inicio</th><th>Fin</th><th>Estado</th></tr>
+            <tr class="click" data-go="actividad-form"><td><b>OT-0142</b></td><td>Instalación</td><td>Carlos Gómez</td><td>Cra 10 #22-15, Centro</td><td>27/09 08:00</td><td>—</td><td><span class="badge b-amber">Pendiente</span></td></tr>
+            <tr class="click" data-go="actividad-form"><td><b>OT-0141</b></td><td>Mantenimiento</td><td>Laura Díaz</td><td>Calle 30 #8-40, Norte</td><td>26/09 14:00</td><td>26/09 15:30</td><td><span class="badge b-green">Ejecutada</span></td></tr>
+            <tr class="click" data-go="actividad-form"><td><b>OT-0140</b></td><td>Retiro</td><td>Pedro Ramírez</td><td>Av. Sur #45-12</td><td>26/09 09:00</td><td>26/09 10:10</td><td><span class="badge b-green">Ejecutada</span></td></tr>
+            <tr class="click" data-go="actividad-form"><td><b>OT-0139</b></td><td>Instalación</td><td>Carlos Gómez</td><td>Calle 15 #3-28</td><td>25/09 16:00</td><td>—</td><td><span class="badge b-gray">Cancelada</span></td></tr>
+            <tr class="click" data-go="actividad-form"><td><b>OT-0138</b></td><td>Mantenimiento</td><td>Pedro Ramírez</td><td>Cra 7 #19-33</td><td>25/09 10:00</td><td>25/09 11:20</td><td><span class="badge b-green">Ejecutada</span></td></tr>
+            <tr class="click" data-go="actividad-form"><td><b>OT-0137</b></td><td>Instalación</td><td>Laura Díaz</td><td>Calle 40 #12-05</td><td>24/09 08:30</td><td>24/09 10:00</td><td><span class="badge b-green">Ejecutada</span></td></tr>
+          </table></div>
+          <div class="tbl-foot"><span>Mostrando 6 de 63 actividades</span><div class="pager"><span class="on">1</span><span>2</span><span>3</span><span>›</span></div></div>
+        </div>
+      </div>
+
+      <!-- ---------- ACTIVIDAD FORM ---------- -->
+      <div class="screen" id="actividad-form" data-title="Orden de trabajo" data-nav="actividades">
+        <div class="page-head"><div><h3>Orden de trabajo OT-0143</h3><p>Registre la intervención técnica, sus materiales y evidencias</p></div>
+          <button class="btn btn-ghost" data-go="actividades">← Volver a actividades</button></div>
+        <div class="grid split split-act">
+          <div class="card">
+            <h4>Datos de la actividad</h4>
+            <div class="grid g-form">
+              <div class="field"><label>Tipo de actividad</label><select class="input"><option>Instalación</option><option>Mantenimiento</option><option>Retiro</option></select></div>
+              <div class="field"><label>Técnico asignado</label><select class="input"><option>Carlos Gómez</option><option>Laura Díaz</option><option>Pedro Ramírez</option></select></div>
+              <div class="field"><label>Inicio real</label><input class="input" value="27/09/2026 08:00"></div>
+              <div class="field"><label>Fin real</label><input class="input" placeholder="dd/mm/aaaa hh:mm"></div>
+            </div>
+            <div class="field"><label>Ubicación (dirección o GPS)</label>
+              <div style="display:flex;gap:8px"><input class="input" value="Cra 10 #22-15, Centro"><button class="btn btn-ghost" style="white-space:nowrap"><svg class="i"><use href="#i-pin"/></svg>Usar GPS</button></div></div>
+            <div class="field"><label>Estado de ejecución</label><select class="input"><option>Pendiente</option><option>Ejecutada</option><option>Cancelada</option></select></div>
+            <div class="field"><label>Observaciones</label><textarea class="input" placeholder="Describa lo realizado en sitio"></textarea></div>
+          </div>
+          <div class="grid" style="gap:18px">
+            <div class="card">
+              <h4>Materiales utilizados <button class="btn btn-ghost btn-sm"><svg class="i" style="width:14px;height:14px"><use href="#i-plus"/></svg>Agregar</button></h4>
+              <div class="table-wrap"><table class="mini">
+                <tr><th>Material</th><th>Cantidad</th><th>Unidad</th></tr>
+                <tr><td>Cable UTP cat 6</td><td>25</td><td>metros</td></tr>
+                <tr><td>Conectores RJ45</td><td>4</td><td>unidades</td></tr>
+                <tr><td>Grapas plásticas</td><td>30</td><td>unidades</td></tr>
+              </table></div>
+            </div>
+            <div class="card">
+              <h4>Evidencias</h4>
+              <div class="drop">Arrastre fotos o documentos aquí, o <b style="color:var(--blue)">seleccione archivos</b></div>
+              <div class="thumbs">
+                <div class="thumb"><div class="img"></div>foto_instalacion.jpg</div>
+                <div class="thumb"><div class="img doc"></div>acta_cliente.pdf</div>
+              </div>
+            </div>
+          </div>
+        </div>
+        <div class="actions" style="margin-top:18px">
+          <button class="btn btn-ghost" data-go="actividades">Cancelar</button>
+          <button class="btn btn-primary" data-go="actividades" data-toast="Orden de trabajo guardada">Guardar orden</button>
+        </div>
+      </div>
+
+      <!-- ---------- REPORTES ---------- -->
+      <div class="screen" id="reportes" data-title="Reportes" data-nav="reportes">
+        <div class="page-head"><div><h3>Reportes</h3><p>Genere reportes de inventario y de historial de actividades</p></div>
+          <div style="display:flex;gap:10px">
+            <button class="btn btn-ghost" data-toast="Exportando reporte a PDF…"><svg class="i"><use href="#i-down"/></svg>Exportar PDF</button>
+            <button class="btn btn-ghost" data-toast="Exportando reporte a Excel…"><svg class="i"><use href="#i-down"/></svg>Exportar Excel</button>
+          </div></div>
+        <div class="card" style="margin-bottom:18px">
+          <div class="filters tight filters-report">
+            <div class="field" style="margin:0"><label>Tipo de reporte</label><select class="input"><option>Historial de actividades</option><option>Inventario general</option><option>Inventario por técnico</option></select></div>
+            <div class="field" style="margin:0"><label>Desde</label><input class="input" value="01/09/2026"></div>
+            <div class="field" style="margin:0"><label>Hasta</label><input class="input" value="27/09/2026"></div>
+            <div class="field" style="margin:0"><label>Técnico</label><select class="input"><option>Todos</option><option>Carlos Gómez</option><option>Laura Díaz</option><option>Pedro Ramírez</option></select></div>
+            <div class="field" style="margin:0"><label>Tipo de tarea</label><select class="input"><option>Todas</option><option>Instalación</option><option>Mantenimiento</option><option>Retiro</option></select></div>
+            <button class="btn btn-primary" data-toast="Reporte generado">Generar</button>
+          </div>
+        </div>
+        <div class="card">
+          <div class="chips">
+            <div class="chip"><b>63</b>Actividades</div>
+            <div class="chip"><b>51</b>Ejecutadas</div>
+            <div class="chip"><b>12</b>Pendientes</div>
+            <div class="chip"><b>1 h 24 min</b>Tiempo promedio</div>
+          </div>
+          <div class="table-wrap"><table>
+            <tr><th>Orden</th><th>Fecha</th><th>Técnico</th><th>Tipo</th><th>Duración</th><th>Estado</th></tr>
+            <tr><td>OT-0141</td><td>26/09/2026</td><td>Laura Díaz</td><td>Mantenimiento</td><td>1 h 30 min</td><td><span class="badge b-green">Ejecutada</span></td></tr>
+            <tr><td>OT-0140</td><td>26/09/2026</td><td>Pedro Ramírez</td><td>Retiro</td><td>1 h 10 min</td><td><span class="badge b-green">Ejecutada</span></td></tr>
+            <tr><td>OT-0138</td><td>25/09/2026</td><td>Pedro Ramírez</td><td>Mantenimiento</td><td>1 h 20 min</td><td><span class="badge b-green">Ejecutada</span></td></tr>
+            <tr><td>OT-0137</td><td>24/09/2026</td><td>Laura Díaz</td><td>Instalación</td><td>1 h 30 min</td><td><span class="badge b-green">Ejecutada</span></td></tr>
+            <tr><td>OT-0136</td><td>24/09/2026</td><td>Carlos Gómez</td><td>Instalación</td><td>2 h 05 min</td><td><span class="badge b-green">Ejecutada</span></td></tr>
+          </table></div>
+        </div>
+      </div>
+
+      <!-- ---------- USUARIOS ---------- -->
+      <div class="screen" id="usuarios" data-title="Usuarios y roles" data-nav="usuarios">
+        <div class="page-head"><div><h3>Usuarios y roles</h3><p>Cree, edite y desactive usuarios; asigne su rol de acceso</p></div></div>
+        <div class="grid split split-usr">
+          <div class="card">
+            <h4>Usuarios registrados</h4>
+            <div class="table-wrap"><table>
+              <tr><th>Nombre</th><th>Usuario</th><th>Rol</th><th>Estado</th><th></th></tr>
+              <tr><td><b>Administrador</b></td><td>admin</td><td><span class="badge b-blue">Administrador</span></td><td><span class="badge b-green">Activo</span></td><td><button class="btn btn-ghost btn-sm">Editar</button></td></tr>
+              <tr><td><b>María Fernández</b></td><td>mfernandez</td><td><span class="badge b-amber">Bodega</span></td><td><span class="badge b-green">Activo</span></td><td><button class="btn btn-ghost btn-sm">Editar</button><button class="btn btn-danger btn-sm" data-toast="Usuario desactivado">Desactivar</button></td></tr>
+              <tr><td><b>Carlos Gómez</b></td><td>cgomez</td><td><span class="badge b-gray">Técnico</span></td><td><span class="badge b-green">Activo</span></td><td><button class="btn btn-ghost btn-sm">Editar</button><button class="btn btn-danger btn-sm" data-toast="Usuario desactivado">Desactivar</button></td></tr>
+              <tr><td><b>Laura Díaz</b></td><td>ldiaz</td><td><span class="badge b-gray">Técnico</span></td><td><span class="badge b-green">Activo</span></td><td><button class="btn btn-ghost btn-sm">Editar</button><button class="btn btn-danger btn-sm" data-toast="Usuario desactivado">Desactivar</button></td></tr>
+              <tr><td><b>Pedro Ramírez</b></td><td>pramirez</td><td><span class="badge b-gray">Técnico</span></td><td><span class="badge b-red">Inactivo</span></td><td><button class="btn btn-ghost btn-sm">Editar</button><button class="btn btn-ghost btn-sm" data-toast="Usuario activado">Activar</button></td></tr>
+            </table></div>
+          </div>
+          <div class="card">
+            <h4>Crear usuario</h4>
+            <div class="field"><label>Nombre completo</label><input class="input" placeholder="Nombre y apellidos"></div>
+            <div class="field"><label>Usuario</label><input class="input" placeholder="Nombre de usuario"></div>
+            <div class="field"><label>Rol</label><select class="input"><option>Técnico</option><option>Bodega</option><option>Administrador</option></select></div>
+            <div class="field"><label>Contraseña temporal</label><input class="input" type="password" placeholder="Mínimo 8 caracteres"></div>
+            <button class="btn btn-primary btn-block" data-toast="Usuario creado correctamente">Crear usuario</button>
+          </div>
+        </div>
+      </div>
+
+      <!-- ---------- AUDITORIA ---------- -->
+      <div class="screen" id="auditoria" data-title="Auditoría" data-nav="auditoria">
+        <div class="page-head"><div><h3>Auditoría del sistema</h3><p>Registro automático de las operaciones realizadas por los usuarios</p></div></div>
+        <div class="card">
+          <div class="filters">
+            <select class="input"><option>Usuario: todos</option><option>admin</option><option>mfernandez</option><option>ldiaz</option></select>
+            <select class="input"><option>Acción: todas</option><option>INSERT</option><option>UPDATE</option><option>DELETE</option></select>
+            <input class="input" value="01/09/2026 – 27/09/2026">
+            <button class="btn btn-primary btn-sm" style="padding:9px 16px">Filtrar</button>
+          </div>
+          <div class="table-wrap"><table>
+            <tr><th>Fecha y hora</th><th>Usuario</th><th>Acción</th><th>Tabla afectada</th><th>Detalle</th></tr>
+            <tr><td>27/09/2026 08:45</td><td>mfernandez</td><td><span class="badge b-green">INSERT</span></td><td>asignacion</td><td>Asignó EQ-002 a Carlos Gómez</td></tr>
+            <tr><td>27/09/2026 08:20</td><td>mfernandez</td><td><span class="badge b-green">INSERT</span></td><td>equipo</td><td>Registró el equipo EQ-007</td></tr>
+            <tr><td>26/09/2026 15:31</td><td>ldiaz</td><td><span class="badge b-blue">UPDATE</span></td><td>actividad</td><td>OT-0141 cambió a estado ejecutada</td></tr>
+            <tr><td>26/09/2026 10:11</td><td>pramirez</td><td><span class="badge b-blue">UPDATE</span></td><td>actividad</td><td>OT-0140 cambió a estado ejecutada</td></tr>
+            <tr><td>25/09/2026 11:21</td><td>pramirez</td><td><span class="badge b-green">INSERT</span></td><td>evidencia</td><td>Cargó foto de la OT-0138</td></tr>
+            <tr><td>25/09/2026 09:02</td><td>admin</td><td><span class="badge b-blue">UPDATE</span></td><td>usuario</td><td>Cambió el rol de cgomez</td></tr>
+          </table></div>
+          <div class="tbl-foot"><span>Mostrando 6 de 412 registros</span><div class="pager"><span class="on">1</span><span>2</span><span>3</span><span>›</span></div></div>
+        </div>
+      </div>
+
+    </div>
+  </div>
+</div>
+
+<div class="toast" id="toast"></div>
+
+
+<script src="js/app.js"></script>
+</body>
+</html>

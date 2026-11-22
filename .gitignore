@@ -1,0 +1,14 @@
+# Sistema y editor
+.DS_Store
+Thumbs.db
+.vscode/
+.idea/
+
+# Dependencias y temporales
+node_modules/
+*.log
+*.tmp
+
+# Credenciales (nunca subir)
+.env
+config.local.js
